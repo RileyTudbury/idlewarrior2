@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const Value = new Schema(
+const Game = new Schema(
   {
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    creatorEmail: { type: String, required: true }
+    creatorEmail: { type: String, required: true },
+    honor: { type: Number, default: 0 },
+    clickPower: { type: Number, default: 1 }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-Value.virtual("creator", {
+Game.virtual("creator", {
   localField: "creatorEmail",
   ref: "Profile",
   foreignField: "email",
